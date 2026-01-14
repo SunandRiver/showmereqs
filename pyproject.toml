@@ -1,6 +1,6 @@
 [project]
 name = "showmereqs"
-version = "0.1.7"
+version = "0.1.8"
 description = "A lightweight tool to generate requirements.txt by analyzing import statements"
 requires-python = ">=3.8"
 authors = [
