@@ -60,8 +60,11 @@ class PackageInfo:
             return version
         except importlib.metadata.PackageNotFoundError:
             if self.package_name is not None:
-                version = importlib.metadata.version(self.package_name)
-                return version
+                try:
+                    version = importlib.metadata.version(self.package_name)
+                    return version
+                except importlib.metadata.PackageNotFoundError:
+                    return None
             return None
 
     def _get_package_name_from_mapping(self, special_mapping: dict[str, str] = None):
