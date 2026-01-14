@@ -19,9 +19,9 @@ class PackageInfo:
     package_name: Optional[str] = None
 
     def __post_init__(self):
-        self.version = self._get_local_version()
-
         self.package_name = self._get_package_name_from_mapping()
+
+        self.version = self._get_local_version()
 
         if self.package_name is None:
             json_info = self._get_pypi_json(self.import_name, self.pypi_server)
@@ -59,6 +59,9 @@ class PackageInfo:
             version = importlib.metadata.version(self.import_name)
             return version
         except importlib.metadata.PackageNotFoundError:
+            if self.package_name is not None:
+                version = importlib.metadata.version(self.package_name)
+                return version
             return None
 
     def _get_package_name_from_mapping(self, special_mapping: dict[str, str] = None):
@@ -77,4 +80,4 @@ class PackageInfo:
             else:
                 return None
         except Exception as e:
-            print(f"Warning: Error checking {package_name} on PyPI: {e}")
+            print(f"Warning: Error checking {package_name} on {pypi_api}: {e}")

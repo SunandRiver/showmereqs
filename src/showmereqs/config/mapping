@@ -1065,6 +1065,7 @@ tastypie:django_tastypie
 teamcity:teamcity_messages
 telebot:pyTelegramBotAPI
 telegram:python-telegram-bot
+tap:typed-argument-parser
 tempita:Tempita
 tenjin:Tenjin
 termstyle:python_termstyle
